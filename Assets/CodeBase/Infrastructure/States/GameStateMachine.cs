@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Infrastructure.Factory;
+using Input;
 using Zenject;
 
 namespace Infrastructure.States
@@ -10,18 +11,19 @@ namespace Infrastructure.States
     private Dictionary<Type, IExitableState> _states;
     private IExitableState _activeState;
 
-    public GameStateMachine(SceneLoader sceneLoader, LoadingCurtain loadingCurtain, IGameFactory gameFactory)
+    public GameStateMachine(SceneLoader sceneLoader, LoadingCurtain loadingCurtain, IGameFactory gameFactory,
+      IInputService inputService)
     {
       _states = new Dictionary<Type, IExitableState>
       {
         [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader),
-        [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingCurtain, gameFactory),
+        [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingCurtain, gameFactory, inputService),
         [typeof(GameState)] = new GameState(this),
       };
-      
+
       Enter<BootstrapState>();
     }
-    
+
     public void Enter<TState>() where TState : class, IState
     {
       IState state = ChangeState<TState>();
@@ -37,19 +39,18 @@ namespace Infrastructure.States
     private TState ChangeState<TState>() where TState : class, IExitableState
     {
       _activeState?.Exit();
-      
+
       TState state = GetState<TState>();
       _activeState = state;
-      
+
       return state;
     }
 
-    private TState GetState<TState>() where TState : class, IExitableState => 
+    private TState GetState<TState>() where TState : class, IExitableState =>
       _states[typeof(TState)] as TState;
 
     public void Initialize()
     {
-      
     }
   }
 }

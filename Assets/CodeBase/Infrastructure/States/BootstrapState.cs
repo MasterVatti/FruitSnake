@@ -1,3 +1,6 @@
+using Input;
+using UnityEngine;
+
 namespace Infrastructure.States
 {
   public class BootstrapState : IState
@@ -24,10 +27,5 @@ namespace Infrastructure.States
 
     private void EnterLoadLevel() =>
       _stateMachine.Enter<LoadLevelState, string>(Game);
-
-    // private static IInputService InputService() =>
-    //   Application.isEditor
-    //     ? (IInputService) new StandaloneInputService()
-    //     : new MobileInputService();
   }
 }
