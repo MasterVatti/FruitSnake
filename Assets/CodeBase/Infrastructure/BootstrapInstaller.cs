@@ -1,7 +1,7 @@
 using Infrastructure.AssetManagement;
 using Infrastructure.Factory;
 using Infrastructure.States;
-using Input;
+using Services.Input;
 using UnityEngine;
 using Zenject;
 

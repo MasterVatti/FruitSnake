@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Infrastructure.Factory;
-using Input;
+using Services.Input;
 using Zenject;
 
 namespace Infrastructure.States

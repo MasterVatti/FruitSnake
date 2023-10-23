@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using CameraLogic;
 using Infrastructure.Factory;
-using Input;
+using Services.Input;
 using Snake;
 using UnityEngine;
 

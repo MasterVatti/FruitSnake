@@ -1,8 +1,5 @@
-using System;
-using Input;
+using Services.Input;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using Zenject;
 
 namespace Snake
 {
