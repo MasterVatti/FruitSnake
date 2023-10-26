@@ -1,11 +1,12 @@
 using System.Threading.Tasks;
-using Infrastructure.Services;
+using CodeBase.Infrastructure.Services;
 using UnityEngine;
 
-namespace Infrastructure.Factory
+namespace CodeBase.Infrastructure.Factory
 {
   public interface IGameFactory : IService
   {
     Task<GameObject> CreateSnake(Vector3 at);
+    GameObject SnakeGameObject { get; }
   }
 }

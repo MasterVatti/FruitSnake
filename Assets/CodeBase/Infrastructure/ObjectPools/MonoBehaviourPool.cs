@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
 
-namespace Infrastructure.ObjectPools
+namespace CodeBase.Infrastructure.ObjectPools
 {
     public class MonoBehaviourPool<T> where T : Component
     {

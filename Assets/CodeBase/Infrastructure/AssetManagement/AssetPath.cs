@@ -1,7 +1,7 @@
-namespace Infrastructure.AssetManagement
+namespace CodeBase.Infrastructure.AssetManagement
 {
   public static class AssetPath
   {
-    public const string SnakePath = "Snake/Snake_Head";
+    public const string SnakePath = "Snake/Snake";
   }
 }

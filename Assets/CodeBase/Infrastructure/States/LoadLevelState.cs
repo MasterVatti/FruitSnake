@@ -1,11 +1,11 @@
 using System.Threading.Tasks;
-using CameraLogic;
-using Infrastructure.Factory;
-using Services.Input;
-using Snake;
+using CodeBase.CameraLogic;
+using CodeBase.Infrastructure.Factory;
+using CodeBase.Services.Input;
+using CodeBase.Snake;
 using UnityEngine;
 
-namespace Infrastructure.States
+namespace CodeBase.Infrastructure.States
 {
   public class LoadLevelState : IPayloadedState<string>
   {
@@ -45,7 +45,8 @@ namespace Infrastructure.States
     private async Task InitGameWorld()
     {
       GameObject snake = await InitSnake();
-      snake.GetComponent<SnakeMove>().Constructor(_inputService);
+      snake.GetComponentInChildren<SnakeBodyMovement>().Constructor(_inputService);
+      snake.GetComponentInChildren<SnakeMovement>().Constructor(_inputService);
       CameraFollow(snake);
     }
 
@@ -55,6 +56,6 @@ namespace Infrastructure.States
     }
     
     private void CameraFollow(GameObject snake) =>
-      Camera.main.GetComponent<CameraFollow>().Follow(snake);
+      Camera.main.GetComponent<CameraFollow>().Follow(snake.GetComponentInChildren<SnakeBodyMovement>().gameObject);
   }
 }

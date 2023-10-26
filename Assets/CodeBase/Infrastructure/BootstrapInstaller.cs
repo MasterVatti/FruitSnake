@@ -1,11 +1,11 @@
-using Infrastructure.AssetManagement;
-using Infrastructure.Factory;
-using Infrastructure.States;
-using Services.Input;
+using CodeBase.Infrastructure.AssetManagement;
+using CodeBase.Infrastructure.Factory;
+using CodeBase.Infrastructure.States;
+using CodeBase.Services.Input;
 using UnityEngine;
 using Zenject;
 
-namespace Infrastructure
+namespace CodeBase.Infrastructure
 {
   public class BootstrapInstaller : MonoInstaller
   {

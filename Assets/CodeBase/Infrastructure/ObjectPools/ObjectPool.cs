@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Infrastructure.ObjectPools
+namespace CodeBase.Infrastructure.ObjectPools
 {
     public class ObjectPool<T> where T : class, new()
     {

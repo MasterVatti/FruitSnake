@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Food
+namespace CodeBase.Food
 {
   public class Food : MonoBehaviour
   {

@@ -1,6 +1,4 @@
-using UnityEngine;
-
-namespace Infrastructure.States
+namespace CodeBase.Infrastructure.States
 {
   public class BootstrapState : IState
   {

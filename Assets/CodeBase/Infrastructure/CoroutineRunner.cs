@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Infrastructure
+namespace CodeBase.Infrastructure
 {
   public class CoroutineRunner : MonoBehaviour, ICoroutineRunner
   {

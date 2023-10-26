@@ -1,8 +1,9 @@
-using Infrastructure.ObjectPools;
+using System.Collections;
+using CodeBase.Infrastructure.ObjectPools;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Food
+namespace CodeBase.Food
 {
   public class SpawnFood : MonoBehaviour
   {
@@ -15,7 +16,7 @@ namespace Food
 
     private void Awake()
     {
-      _ground = GameObject.FindWithTag("Ground");
+      _ground = GameObject.FindWithTag("Planet");
       _foodPool = new MonoBehaviourPool<Food>(_foodPrefab, transform, _foodCount);
     }
 
@@ -27,14 +28,26 @@ namespace Food
     public void SpawnOneFood()
     {
       Food food = _foodPool.Take();
-      SetFoodPosition(_vertices);
+      SetFoodPosition(food, _vertices);
     }
 
-    public void EatFood(Food food)
+    public void EatFood(GameObject food)
     {
-      _foodPool.Release(food);
+      Food foodInPool = food.GetComponent<Food>();
+      _foodPool.Release(foodInPool);
+      StartCoroutine(FoodCooldown());
+      StopCoroutine(FoodCooldown());
+      
+      // Debug.Log("EndFoodCooldown");
     }
-    
+
+    private IEnumerator FoodCooldown(float countTime = 2.5f)
+    {
+      // Debug.Log("StartFoodCooldown");
+      yield return new WaitForSeconds(countTime);
+      SpawnOneFood();
+    }
+
     private void SpawnAllFood()
     {
       Mesh sphereMesh = _ground.GetComponent<MeshFilter>().sharedMesh;
@@ -42,13 +55,12 @@ namespace Food
       for (int i = 0; i < _foodCount; i++) SpawnOneFood();
     }
 
-    private void SetFoodPosition(Vector3[] vertices)
+    private void SetFoodPosition(Food food, Vector3[] vertices)
     {
       int randomIndex = Random.Range(0, vertices.Length);
       Vector3 position = _ground.transform.TransformPoint(vertices[randomIndex]);
-
-      Food newObject = Instantiate(_foodPrefab, position, Quaternion.identity);
-      newObject.transform.SetParent(transform);
+      food.transform.position = position;
+      food.transform.rotation = Quaternion.identity;
     }
   }
 }

@@ -1,16 +1,16 @@
 using UnityEngine;
 
-namespace Services.Input
+namespace CodeBase.Services.Input
 {
   public class InputService : IInputService
   {
-    protected const string Horizontal = "Horizontal";
-    protected const string Vertical = "Vertical";
+    private const string Horizontal = "Horizontal";
+    private const string Vertical = "Vertical";
     private const string Button = "Fire";
 
-// #if UNITY_IOS || UNITY_ANDROID
-//     public Vector2 Axis => SimpleInputAxis();
-// #else
+#if UNITY_IOS || UNITY_ANDROID
+    public Vector3 Axis => SimpleInputAxis();
+#else
 
     public InputService()
     {
@@ -35,7 +35,7 @@ namespace Services.Input
     {
       return new Vector3(UnityEngine.Input.GetAxis(Horizontal), 0, UnityEngine.Input.GetAxis(Vertical)).normalized;
     }
-// #endif
+#endif
     
 
     public bool IsAttackButtonUp()
@@ -45,7 +45,7 @@ namespace Services.Input
 
     private static Vector3 SimpleInputAxis()
     {
-      return new Vector3(SimpleInput.GetAxis(Horizontal), 0, SimpleInput.GetAxis(Vertical)).normalized;
+      return new Vector3(SimpleInput.GetAxis(Horizontal),0, SimpleInput.GetAxis(Vertical));
     }
   }
 }
