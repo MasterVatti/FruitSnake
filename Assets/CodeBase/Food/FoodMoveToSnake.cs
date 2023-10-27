@@ -5,15 +5,7 @@ namespace CodeBase.Food
   public class FoodMoveToSnake : MonoBehaviour
   {
     [SerializeField] private TriggerObserver _triggerObserver;
-
-    // private IGameFactory _gameFactory;
-    //
-    // [Inject]
-    // public void Constructor(IGameFactory gameFactory)
-    // {
-    //   Debug.Log($"Constructor {gameFactory}");
-    //   _gameFactory = gameFactory;
-    // }
+    [SerializeField] private Collider _aggroCollider;
 
     private void Start()
     {
@@ -23,8 +15,7 @@ namespace CodeBase.Food
 
     private void TriggerEnter(Collider obj)
     {
-      Debug.Log("FoodMoveToSnake TriggerEnter");
-      GetComponentInParent<SpawnFood>().EatFood(gameObject);
+      GetComponentInParent<SpawnFood>().EatFood(gameObject, _aggroCollider);
     }
 
     private void TriggerExit(Collider obj)

@@ -16,7 +16,7 @@ namespace CodeBase.Food
 
     private void Awake()
     {
-      _ground = GameObject.FindWithTag("Planet");
+      _ground = GameObject.FindWithTag("Ground");
       _foodPool = new MonoBehaviourPool<Food>(_foodPrefab, transform, _foodCount);
     }
 
@@ -31,21 +31,18 @@ namespace CodeBase.Food
       SetFoodPosition(food, _vertices);
     }
 
-    public void EatFood(GameObject food)
+    public void EatFood(GameObject food, Collider aggroCollider)
     {
       Food foodInPool = food.GetComponent<Food>();
       _foodPool.Release(foodInPool);
-      StartCoroutine(FoodCooldown());
-      StopCoroutine(FoodCooldown());
-      
-      // Debug.Log("EndFoodCooldown");
+      StartCoroutine(FoodCooldown(aggroCollider));
     }
 
-    private IEnumerator FoodCooldown(float countTime = 2.5f)
+    private IEnumerator FoodCooldown(Collider aggroCollider, float countTime = 2.5f)
     {
-      // Debug.Log("StartFoodCooldown");
       yield return new WaitForSeconds(countTime);
       SpawnOneFood();
+      aggroCollider.enabled = true;
     }
 
     private void SpawnAllFood()

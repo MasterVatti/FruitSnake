@@ -45,16 +45,16 @@ namespace CodeBase.Infrastructure.States
     private async Task InitGameWorld()
     {
       GameObject snake = await InitSnake();
-      snake.GetComponentInChildren<SnakeBodyMovement>().Constructor(_inputService);
+      GameObject hud = await InitHud();
       snake.GetComponentInChildren<SnakeMovement>().Constructor(_inputService);
       CameraFollow(snake);
     }
 
-    private async Task<GameObject> InitSnake()
-    {
-      return await _gameFactory.CreateSnake(GameObject.FindWithTag(InitialPointTag).transform.position);
-    }
-    
+    private async Task<GameObject> InitSnake() =>
+      await _gameFactory.CreateSnake(GameObject.FindWithTag(InitialPointTag).transform.position);
+
+    private async Task<GameObject> InitHud() => await _gameFactory.CreateHud();
+
     private void CameraFollow(GameObject snake) =>
       Camera.main.GetComponent<CameraFollow>().Follow(snake.GetComponentInChildren<SnakeBodyMovement>().gameObject);
   }

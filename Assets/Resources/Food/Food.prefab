@@ -44,7 +44,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.77
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4390180883590235197
 MonoBehaviour:
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _triggerObserver: {fileID: 2062692602105909218}
-  _movementSpeed: 35
+  _movementSpeed: 40
 --- !u!114 &4642573098896266801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,3 +211,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _triggerObserver: {fileID: 4390180883590235197}
+  _aggroCollider: {fileID: 3227498717966529355}

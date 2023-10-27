@@ -4,53 +4,31 @@ namespace CodeBase.CameraLogic
 {
   public class CameraFollow : MonoBehaviour
   {
-    private Transform playerTransform;
-    [SerializeField, Tooltip("Camera offset from player (x not used)")]
-    private Vector3 offsetPosition = new Vector3(0, 5, 5);
-    [SerializeField]
-    private bool lookAt = true;
+    [SerializeField] private Vector3 _offsetPosition;
+    [SerializeField] private bool _lookAt;
 
-    // privates
-    private Transform _mainCam = null;
+    private Transform _snakeTransform;
+    private Transform _mainCamera;
 
-    // Use this for initialization
     private void Start()
     {
-      _mainCam = Camera.main.transform;
+      _mainCamera = Camera.main.transform;
     }
 
-    public void Follow(GameObject following)
-    {
-      playerTransform = following.transform;
-    }
-    
-    // Update is called once per frame
+    public void Follow(GameObject following) => _snakeTransform = following.transform;
+
     private void LateUpdate()
     {
       UpdateCamera();
     }
 
-    /// <summary>
-    /// Update camera position and rotation
-    /// </summary>
     private void UpdateCamera()
     {
-      if (playerTransform == null)
-      {
-        return;
-      }
-      // camera rig position
-      transform.position = playerTransform.position + -(playerTransform.forward * offsetPosition.z) + (playerTransform.up * offsetPosition.y);
-      // point camera at player
-      if (lookAt)
-      {
-        // point camera at player using players up direction
-        _mainCam.LookAt(playerTransform, playerTransform.up);
-      }
-      else
-      {
-        _mainCam.LookAt(playerTransform);
-      }
+      transform.position = _snakeTransform.position + -(_snakeTransform.forward * _offsetPosition.z) +
+                           (_snakeTransform.up * _offsetPosition.y);
+
+      if (_lookAt) _mainCamera.LookAt(_snakeTransform, _snakeTransform.up);
+      else _mainCamera.LookAt(_snakeTransform);
     }
   }
 }

@@ -15,5 +15,6 @@ namespace CodeBase.Infrastructure.Factory
     }
 
     public async Task<GameObject> CreateSnake(Vector3 at) => SnakeGameObject = _assets.Instantiate(AssetPath.SnakePath, at);
+    public async Task<GameObject> CreateHud() => _assets.Instantiate(AssetPath.HudPath);
   }
 }

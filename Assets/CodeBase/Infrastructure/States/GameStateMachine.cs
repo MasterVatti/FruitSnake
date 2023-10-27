@@ -20,7 +20,10 @@ namespace CodeBase.Infrastructure.States
         [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingCurtain, gameFactory, inputService),
         [typeof(GameState)] = new GameState(this),
       };
+    }
 
+    public void Initialize()
+    {
       Enter<BootstrapState>();
     }
 
@@ -48,9 +51,5 @@ namespace CodeBase.Infrastructure.States
 
     private TState GetState<TState>() where TState : class, IExitableState =>
       _states[typeof(TState)] as TState;
-
-    public void Initialize()
-    {
-    }
   }
 }

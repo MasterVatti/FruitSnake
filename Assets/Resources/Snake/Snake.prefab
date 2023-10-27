@@ -235,7 +235,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 135445472585328969}
-  - component: {fileID: 7543215764219203561}
   m_Layer: 0
   m_Name: Snake
   m_TagString: Untagged
@@ -260,24 +259,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7543215764219203561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2562145831841477588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 572a290a22e14d7a840ee84cdb5c23df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _triggerObserver: {fileID: 6605630767236805083}
-  _snakeBodyPrefab: {fileID: 5811287171965733946, guid: c34ee7d3b74ad4442baa5d7eb45c8790, type: 3}
-  _foodMask:
-    serializedVersion: 2
-    m_Bits: 128
-  _snakeBodyMovement: {fileID: 3036019672148232849}
 --- !u!1 &3443388747457507170
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,7 +335,7 @@ GameObject:
   - component: {fileID: 230315451651677366}
   - component: {fileID: 2654531025227196540}
   m_Layer: 0
-  m_Name: Snake_Body
+  m_Name: RotationBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -466,7 +447,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1151681027672582651}
   m_Layer: 0
-  m_Name: RotationBody
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -656,15 +637,16 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7231396419400788063}
-  - component: {fileID: 6915955678084049}
-  - component: {fileID: 8006156972843535007}
   - component: {fileID: 5648670135118090338}
   - component: {fileID: 9161351683951520937}
+  - component: {fileID: 1017300222169857139}
+  - component: {fileID: 333886068341338968}
   - component: {fileID: 5663047354075769215}
   - component: {fileID: 3036019672148232849}
   - component: {fileID: 6605630767236805083}
   - component: {fileID: 1589199661525264024}
   - component: {fileID: 1483589186712244678}
+  - component: {fileID: 970047475479112362}
   m_Layer: 8
   m_Name: Snake_Head
   m_TagString: Untagged
@@ -689,33 +671,6 @@ Transform:
   m_Father: {fileID: 135445472585328969}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &6915955678084049
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8003112137727292133}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0.012508452, y: -0.04, z: 0.7359749}
---- !u!136 &8006156972843535007
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8003112137727292133}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.63
-  m_Height: 1.66
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0.7}
 --- !u!33 &5648670135118090338
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -766,6 +721,34 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &1017300222169857139
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8003112137727292133}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.4
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.012508452, y: -0.04, z: 0.73}
+--- !u!136 &333886068341338968
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8003112137727292133}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.4
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.012508452, y: -0.04, z: -0.58}
 --- !u!54 &5663047354075769215
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -794,20 +777,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e0bb12cbd544351aeb50564b174d890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementSpeed: 8
-  _snakeRigidbody: {fileID: 5663047354075769215}
+  _bodyMovementSpeed: 7
   _snakeTransform: {fileID: 7231396419400788063}
   _snakeRotatingTransform: {fileID: 1795742079398295745}
-  _bonesDistance: 0.5
-  _bonePrefab: {fileID: 4599922992150219177}
-  _tails:
+  _movementBodies:
   - {fileID: 1151681027672582651}
-  _colliderTails:
+  _rotationBodies:
   - {fileID: 3791438505565246227}
-  _speedRotate: 100
-  _mindistance: 1
-  _f: 0.5
-  _f1: 0.5
+  _minimumBodyDistance: 1
 --- !u!114 &6605630767236805083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -832,8 +809,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3679c18fdaa44b6d8015bdef18614ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  _speedRotate: 5
+  _headMovementSpeed: 9
+  _snakeRigidbody: {fileID: 5663047354075769215}
+  _childRotatingTransform: {fileID: 1795742079398295745}
 --- !u!114 &1483589186712244678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -846,6 +824,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f28df78eeaad742a197df879b3507fb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &970047475479112362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8003112137727292133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 572a290a22e14d7a840ee84cdb5c23df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerObserver: {fileID: 6605630767236805083}
+  _snakeBodyPrefab: {fileID: 5811287171965733946, guid: c34ee7d3b74ad4442baa5d7eb45c8790, type: 3}
+  _parentTransform: {fileID: 135445472585328969}
+  _foodMask:
+    serializedVersion: 2
+    m_Bits: 128
+  _snakeBodyMovement: {fileID: 3036019672148232849}
 --- !u!1 &8030466858452312155
 GameObject:
   m_ObjectHideFlags: 0

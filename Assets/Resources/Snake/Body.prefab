@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2040084517757623503}
   m_Layer: 0
-  m_Name: RotationBody
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 7207123283044668850}
   - component: {fileID: 8213796699987652058}
   m_Layer: 0
-  m_Name: Snake_Body
+  m_Name: RotationBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -5,7 +5,7 @@ namespace CodeBase.Infrastructure
 {
   public class LoadingCurtain : MonoBehaviour
   {
-    public CanvasGroup Curtain;
+    [SerializeField] CanvasGroup _curtain;
 
     private void Awake()
     {
@@ -15,16 +15,16 @@ namespace CodeBase.Infrastructure
     public void Show()
     {
       gameObject.SetActive(true);
-      Curtain.alpha = 1;
+      _curtain.alpha = 1;
     }
     
     public void Hide() => StartCoroutine(DoFadeIn());
     
     private IEnumerator DoFadeIn()
     {
-      while (Curtain.alpha > 0)
+      while (_curtain.alpha > 0)
       {
-        Curtain.alpha -= 0.03f;
+        _curtain.alpha -= 0.03f;
         yield return new WaitForSeconds(0.03f);
       }
       

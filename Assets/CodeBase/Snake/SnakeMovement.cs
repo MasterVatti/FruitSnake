@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using CodeBase.Services.Input;
+﻿using CodeBase.Services.Input;
 using UnityEngine;
 
 namespace CodeBase.Snake
@@ -8,76 +6,50 @@ namespace CodeBase.Snake
   [RequireComponent(typeof(Rigidbody))]
   public class SnakeMovement : MonoBehaviour
   {
-    [SerializeField] private float speed = 10.0f;
-    [SerializeField] private float _speedRotate = 5f;
+    [SerializeField] private float _headMovementSpeed;
+    [SerializeField] private Rigidbody _snakeRigidbody;
+    [SerializeField] private Transform _childRotatingTransform;
 
-    private Vector3 _moveDirection;
-    private Rigidbody _playerRB;
-    private Transform _playerMesh;
     private IInputService _inputService;
-    private float _angle = 90f;
-    private float _previousAngle;
+    private Vector3 _moveDirection = new(1, 0, 0);
+    private float _movementAngle = 90f;
+    private float _previousMovementAngle;
+
+    private void FixedUpdate()
+    {
+      SetMoveDirection();
+      _snakeRigidbody.MovePosition(_snakeRigidbody.position +
+                                   transform.TransformDirection(_moveDirection * _headMovementSpeed * Time.deltaTime));
+      RotateForward();
+    }
 
     public void Constructor(IInputService inputService)
     {
       _inputService = inputService;
     }
 
-    private void Awake()
+    private void SetMoveDirection()
     {
-      _moveDirection = _moveDirection = new Vector3(1, 0, 0);
-    }
-
-    private void Start()
-    {
-      _playerRB = GetComponent<Rigidbody>();
-      _playerMesh = transform.GetChild(0).transform;
-      // _playerMesh = transform;
-    }
-    
-    
-    private void FixedUpdate()
-    {
-      
       if (_inputService.Axis != Vector3.zero)
       {
-        _angle = Mathf.Atan2(_inputService.Axis.x, _inputService.Axis.z) * Mathf.Rad2Deg;
-        if (_angle is 0f or 90f or 180f or 270f or 360f or -90f or -180f or -270f or -360f)
+        _movementAngle = Mathf.Atan2(_inputService.Axis.x, _inputService.Axis.z) * Mathf.Rad2Deg;
+        // specific joystick plugin, need to other joystick
+        if (_movementAngle is 0f or 90f or 180f or 270f or 360f or -90f or -180f or -270f or -360f)
         {
-          Debug.Log($"{_angle} – angle");
-          _angle = _previousAngle;
+          _movementAngle = _previousMovementAngle;
         }
         else
         {
-          _previousAngle = _angle;
+          _previousMovementAngle = _movementAngle;
           _moveDirection = new Vector3(_inputService.Axis.x, 0, _inputService.Axis.z).normalized;
         }
-        
-
       }
-      
-      
-      _playerRB.MovePosition(_playerRB.position + transform.TransformDirection(_moveDirection * speed * Time.deltaTime));
-      
-      
-      RotateForward();
-      // _playerRB.velocity = new Vector3(_inputService.Axis.x * speed, _playerRB.velocity.y, _inputService.Axis.z * speed);
     }
 
     private void RotateForward()
     {
-      Vector3 dir = _moveDirection;
-      // calculate angle and rotation  * _speedRotate * Time.deltaTime
-      float angle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
-      
-      Quaternion targetRotation = Quaternion.AngleAxis(_angle, Vector3.up);
-      // only update rotation if direction greater than zero
-
-      if (Vector3.Magnitude(dir) > 0.0f)
-      {
-        _playerMesh.localRotation = targetRotation;
-
-      }
+      Quaternion targetRotation = Quaternion.AngleAxis(_movementAngle, Vector3.up);
+      if (Vector3.Magnitude(_moveDirection) > 0.0f) _childRotatingTransform.localRotation = targetRotation;
     }
   }
 }

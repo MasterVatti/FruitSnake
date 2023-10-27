@@ -5,22 +5,22 @@ namespace CodeBase.Snake
   [RequireComponent(typeof(Rigidbody))]
   public class FakeGravityBody : MonoBehaviour
   {
-    private Transform _objTransform;
+    private Transform _targetTransform;
     private FakeGravity _attractor;
 
     private void Awake()
     {
-      _attractor = GameObject.FindGameObjectWithTag("Planet").GetComponent<FakeGravity>();
+      _attractor = GameObject.FindGameObjectWithTag("Ground").GetComponent<FakeGravity>();
     }
 
     private void Start()
     {
-      _objTransform = transform;
+      _targetTransform = transform;
     }
     
     private void Update()
     {
-      _attractor.Attract(_objTransform);
+      _attractor.Attract(_targetTransform);
     }
   }
 }

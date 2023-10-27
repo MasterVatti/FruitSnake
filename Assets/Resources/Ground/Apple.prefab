@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 8178703783460909512}
   - component: {fileID: 4302810308831715586}
   - component: {fileID: 647635016508844063}
+  - component: {fileID: 1808432445}
   m_Layer: 0
   m_Name: Vetka
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &8178703783460909512
 Transform:
@@ -61,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7754141509786477027, guid: 4de917424f1d73946b3e65058bd2c2b8, type: 3}
+  - {fileID: 2100000, guid: 3924c950ce2dd4ab287ee303f1ece688, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,6 +84,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1808432445
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4171707950342779813}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2518911708822122971, guid: 4de917424f1d73946b3e65058bd2c2b8, type: 3}
 --- !u!1 &5253225784738311391
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,12 +142,14 @@ GameObject:
   - component: {fileID: 9058784366872665236}
   - component: {fileID: 4511422695461455142}
   - component: {fileID: 9150508101762844497}
-  m_Layer: 0
+  - component: {fileID: 1808432446}
+  - component: {fileID: 1808432447}
+  m_Layer: 9
   m_Name: Apple
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &9058784366872665236
 Transform:
@@ -177,8 +194,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1902057999135207705, guid: 4de917424f1d73946b3e65058bd2c2b8, type: 3}
-  - {fileID: -348237781603598611, guid: 4de917424f1d73946b3e65058bd2c2b8, type: 3}
+  - {fileID: 2100000, guid: 9ee351b43baeb49039c4e815a9a1c61d, type: 2}
+  - {fileID: 2100000, guid: 9ee351b43baeb49039c4e815a9a1c61d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -200,3 +217,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1808432446
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6952791756559891853}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -472147775963580301, guid: 4de917424f1d73946b3e65058bd2c2b8, type: 3}
+--- !u!114 &1808432447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6952791756559891853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62637af9033e0404892dda53d14f7ab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gravity: -10
+  _rotationSpeed: 50
+  _gravityBoost: 0
